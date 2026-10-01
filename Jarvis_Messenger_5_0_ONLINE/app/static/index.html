@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Jarvis Messenger</title>
+<link rel="stylesheet" href="/static/style.css?v=5.0">
+</head>
+<body>
+<div id="app">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo">J</span><span>Jarvis</span></div>
+    <div class="user-card" id="userCard"></div>
+
+    <div class="section-title">
+      <span>КОМНАТЫ</span>
+      <button id="addRoom" type="button" title="Создать комнату">+</button>
+    </div>
+
+    <div id="rooms" class="rooms"></div>
+
+    <button id="profileBtn" class="secondary" type="button">Профиль и оформление</button>
+    <button id="joinRoom" class="secondary" type="button">Войти по коду</button>
+  </aside>
+
+  <main class="chat">
+    <header class="chat-head">
+      <div class="chat-title-wrap">
+        <h2 id="roomName">Выберите комнату</h2>
+        <span id="roomStatus"><span class="connection"></span>Нет подключения</span>
+      </div>
+      <div class="chat-actions">
+        <input id="searchInput" class="search-input" placeholder="Поиск сообщений…" autocomplete="off">
+        <button id="copyInvite" class="icon-btn" type="button" disabled title="Код комнаты">Код</button>
+        <button id="logout" class="icon-btn" type="button">Выйти</button>
+      </div>
+    </header>
+
+    <div id="typing" class="typing"></div>
+    <div id="messages" class="messages">
+      <div class="empty"><div><div class="empty-icon">✦</div><h3>Добро пожаловать в Jarvis</h3><p>Создай комнату или выбери существующую.</p></div></div>
+    </div>
+
+    <form id="composer" class="composer">
+      <input id="messageInput" autocomplete="off" maxlength="4000" placeholder="Написать сообщение..." disabled>
+      <button type="submit" disabled>Отправить</button>
+    </form>
+  </main>
+</div>
+
+<div id="auth" class="modal visible">
+  <div class="auth-box">
+    <div class="brand big"><span class="logo">J</span><span>Jarvis Messenger</span></div>
+    <p class="muted">Веб-мессенджер без установки клиента.</p>
+    <div class="tabs"><button id="loginTab" class="active" type="button">Вход</button><button id="registerTab" type="button">Регистрация</button></div>
+    <input id="username" placeholder="Логин" autocomplete="username">
+    <input id="displayName" placeholder="Имя" class="register-only hidden" autocomplete="name">
+    <input id="password" type="password" placeholder="Пароль" autocomplete="current-password">
+    <button id="authSubmit" class="primary" type="button">Войти</button>
+    <div id="authError" class="error"></div>
+  </div>
+</div>
+
+<div id="roomModal" class="modal">
+  <div class="auth-box">
+    <h2>Комната</h2>
+    <p class="muted">Создай новую комнату или войди по коду приглашения.</p>
+    <input id="roomNameInput" placeholder="Название комнаты" maxlength="50">
+    <button id="createRoomBtn" class="primary" type="button">Создать комнату</button>
+    <div class="modal-divider">или</div>
+    <input id="inviteInput" placeholder="Код приглашения" maxlength="20">
+    <button id="joinRoomBtn" class="secondary" type="button">Войти по коду</button>
+    <div id="roomError" class="error"></div>
+    <button id="closeRoomModal" class="icon-btn modal-close" type="button">Закрыть</button>
+  </div>
+</div>
+
+<div id="profileModal" class="modal">
+  <div class="auth-box">
+    <h2>Профиль</h2>
+    <input id="profileName" placeholder="Имя" maxlength="40">
+    <textarea id="profileBio" placeholder="О себе" maxlength="300"></textarea>
+    <input id="profileAvatar" placeholder="Ссылка на аватар" maxlength="500">
+    <label class="field-label">Статус
+      <select id="profileStatus">
+        <option value="online">В сети</option>
+        <option value="idle">Отошёл</option>
+        <option value="dnd">Не беспокоить</option>
+        <option value="invisible">Невидимка</option>
+      </select>
+    </label>
+    <label class="field-label">Акцентный цвет <input id="profileAccent" type="color" value="#7c5cff"></label>
+    <div class="row"><button id="saveProfile" class="primary" type="button">Сохранить</button><button id="closeProfile" type="button">Отмена</button></div>
+  </div>
+</div>
+
+<script src="/static/app.js?v=5.0"></script>
+</body>
+</html>
